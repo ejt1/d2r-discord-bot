@@ -1,0 +1,126 @@
+syntax = "proto2";
+
+package classic.protocol.external.v1.d2r_connection;
+
+import "bgs/low/pb/client/global_extensions/method_options.proto";
+import "bgs/low/pb/client/global_extensions/service_options.proto";
+import "bgs/low/pb/client/rpc_types.proto";
+
+option cc_generic_services = false;
+option optimize_for = CODE_SIZE;
+
+// 0xEEB6AB22
+service D2rServicesConnectionService {
+	rpc AuthSession(AuthSessionRequest) returns(AuthSessionResponse) { 
+		option (bgs.protocol.method_options).id = 3976367982; // 0xED028F6E
+	}
+
+	rpc SessionUpdate(SessionUpdateRequest) returns(.bgs.protocol.NoData) { 
+		option (bgs.protocol.method_options).id = 1854032463; // 0x6E824A4F
+	}
+
+	rpc SessionDestroyed(SessionDestroyedRequest) returns(.bgs.protocol.NoData) { 
+		option (bgs.protocol.method_options).id = 4033161367; // 0xF0652897
+	}
+
+	rpc CookieUpdate(CookieUpdateRequest) returns(.bgs.protocol.NoData) { 
+		option (bgs.protocol.method_options).id = 1256621565; // 0x4AE685FD
+	}
+
+	rpc Ping(bgs.protocol.NoData) returns(.bgs.protocol.NoData) { 
+		option (bgs.protocol.method_options).id = 4044521462; // 0xF1127FF6
+	}
+
+	rpc ServerPing(ServerPingRequest) returns(ServerPingResponse) { 
+		option (bgs.protocol.method_options).id = 105167333; // 0x644B9E5
+	}
+
+	option (bgs.protocol.service_options).descriptor_hash = 4004948770; // 0xEEB6AB22
+	option (bgs.protocol.service_options).type = SERVICE_TYPE_RPC_DIRECT;
+	option (bgs.protocol.sdk_service_options).inbound = true;
+	option (bgs.protocol.sdk_service_options).outbound = true;
+}
+
+message AuroraAccountInfo {
+  optional uint64 account_high = 1;
+  optional uint64 account_low = 2;
+  optional uint64 game_account_high = 3;
+  optional uint64 game_account_low = 4;
+}
+
+message ClientPing {}
+
+message SessionInfo {
+  optional string web_credentials = 1;
+  optional uint32 unknown2 = 2; // 0
+  optional uint32 platform = 4;
+  optional AuroraAccountInfo aurora_account = 6;
+  optional uint32 unknown8 = 8; // 0
+}
+
+message AuthSessionRequest {
+  optional string session_key = 1;
+  optional SessionInfo session_info = 2;
+  optional uint32 program = 3;
+  optional string version = 4;
+  optional string session_token = 5;
+  optional uint32 unknown6 = 6; // 0x30100 (196864)
+  optional uint32 platform = 7;
+  optional uint32 unknown8 = 8;
+  optional string unknown11 = 11;
+  optional string unknown12 = 12;
+}
+
+// same as SessionUpdateRequest
+message AuthSessionResponse {
+  message AuthSessionUnknown {
+    optional uint32 region = 13;
+  }
+  
+  optional AuthSessionUnknown unknown1 = 1;
+  optional uint32 account_id = 4;
+  optional uint32 unknown5 = 5;
+  optional uint32 unknown6 = 6;
+  optional uint32 program = 8;
+  optional string geoip_country = 9;
+  optional uint32 unknown10 = 10;
+  optional uint32 unknown11 = 11;
+}
+
+message CookieUpdateRequest {
+  optional OfflineCookie cookie = 1;
+}
+
+message LoginRequest {
+  optional uint32 program = 2;
+  optional string version = 3;
+  optional uint32 platform = 4;
+}
+
+message LoginResponse {
+  optional string hostname = 1;
+  optional string token = 2;
+  optional uint32 unknown = 3;
+}
+
+message OfflineCookie {
+  optional string name = 1;
+  optional string base64 = 2;
+  optional bytes data = 3;
+  optional uint32 program = 4;
+}
+
+message OfflineCookies {}
+
+message OnlineStats {}
+
+message ServerPingRequest {}
+
+message ServerPingResponse {}
+
+message SessionDestroyedRequest {}
+
+// same as AuthSessionResponse
+message SessionUpdateRequest {
+  optional AuthSessionResponse session = 2;
+}

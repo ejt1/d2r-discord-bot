@@ -1,0 +1,58 @@
+syntax = "proto2";
+
+package classic.protocol.external.v1.leaderboard;
+
+import "bgs/low/pb/client/global_extensions/method_options.proto";
+import "bgs/low/pb/client/global_extensions/service_options.proto";
+
+option cc_generic_services = false;
+option optimize_for = CODE_SIZE;
+
+// 0xB62A8A1
+service LeaderboardService {
+	rpc GetLeaderboardIds(GetLeaderboardIdsRequest) returns(GetLeaderboardIdsResponse) { 
+		option (bgs.protocol.method_options).id = 2073930364; // 0x7B9DAA7C
+	}
+
+	rpc GetServerTime(GetServerTimeRequest) returns(GetServerTimeResponse) { 
+		option (bgs.protocol.method_options).id = 1260141445; // 0x4B1C3B85
+	}
+
+	rpc SetSeasonInfo(SetSeasonInfoRequest) returns(SetSeasonInfoResponse) { 
+		option (bgs.protocol.method_options).id = 2804144556; // 0xA723D9AC
+	}
+
+	option (bgs.protocol.service_options).descriptor_hash = 191015073; // 0xB62A8A1
+	option (bgs.protocol.service_options).type = SERVICE_TYPE_RPC_DIRECT;
+	option (bgs.protocol.sdk_service_options).inbound = true;
+	option (bgs.protocol.sdk_service_options).outbound = true;
+}
+
+message LeaderboardId {}
+
+message LeaderboardPayload {}
+
+message GetLeaderboardIdsRequest {}
+
+message GetLeaderboardIdsResponse {}
+
+message GetServerTimeRequest {
+}
+
+message GetServerTimeResponse {
+  optional uint64 time = 1;
+}
+
+message SeasonInfo {
+  optional uint32 id = 1;
+  optional uint32 start_time = 2;
+  optional uint32 end_time = 3;
+  optional string name = 4;
+}
+
+message SetSeasonInfoRequest {
+  repeated SeasonInfo seasons = 1;
+  optional uint32 active_season = 2;
+}
+
+message SetSeasonInfoResponse {}

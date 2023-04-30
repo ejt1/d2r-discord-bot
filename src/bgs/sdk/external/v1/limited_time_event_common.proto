@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+package classic.protocol.common_client.v1.limited_time_event;
+
+enum LimitedTimeEventModifiers {
+	GOLD_FIND = 1;
+	MAGIC_FIND = 2;
+}
+
+message LimitedTimeEventStatus {
+	repeated classic.protocol.common_client.v1.limited_time_event.LimitedTimeEventModifier modifier = 1;
+	optional uint64 end_epoch = 2;
+}
+message LimitedTimeEventModifier {
+	optional classic.protocol.common_client.v1.limited_time_event.LimitedTimeEventModifiers modifier = 1;
+	optional bool value_boolean = 2;
+	optional int64 value_integer = 3;
+}
+

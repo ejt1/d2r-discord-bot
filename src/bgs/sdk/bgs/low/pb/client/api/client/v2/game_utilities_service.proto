@@ -1,0 +1,39 @@
+syntax = "proto2";
+
+package bgs.protocol.game_utilities.v2.client;
+
+import "bgs/low/pb/client/api/client/v2/attribute_types.proto";
+import "bgs/low/pb/client/global_extensions/field_options.proto";
+import "bgs/low/pb/client/global_extensions/method_options.proto";
+import "bgs/low/pb/client/global_extensions/message_options.proto";
+import "bgs/low/pb/client/global_extensions/service_options.proto";
+
+option cc_generic_services = false;
+
+service GameUtilitiesService {
+	rpc ProcessTask(.bgs.protocol.game_utilities.v2.client.ProcessTaskRequest) returns(.bgs.protocol.game_utilities.v2.client.ProcessTaskResponse) { 
+		option (method_options).id = 1;
+	}
+	rpc GetAllValuesForAttribute(.bgs.protocol.game_utilities.v2.client.GetAllValuesForAttributeRequest) returns(.bgs.protocol.game_utilities.v2.client.GetAllValuesForAttributeResponse) { 
+		option (method_options).id = 2;
+	}
+	option (service_options).descriptor_name = "bnet.protocol.game_utilities.v2.client.GameUtilities";
+	option (service_options).shard_name = "game_utilities";
+	option (sdk_service_options).outbound = true;
+	option (sdk_service_options).use_client_id = true;
+}
+
+message ProcessTaskRequest {
+	repeated bgs.protocol.v2.Attribute attribute = 1;
+	repeated bgs.protocol.v2.Attribute payload = 2;
+}
+message ProcessTaskResponse {
+	repeated bgs.protocol.v2.Attribute result = 1;
+}
+message GetAllValuesForAttributeRequest {
+	optional string attribute_key = 1 ;
+}
+message GetAllValuesForAttributeResponse {
+	repeated bgs.protocol.v2.Variant attribute_value = 1;
+}
+

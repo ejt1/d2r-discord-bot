@@ -1,0 +1,12 @@
+{
+  "name": "d2r-discord-bot",
+  "version-string": "0.1.0",
+  "dependencies": [
+    "boost-asio",
+    "boost-beast",
+    "dpp",
+    "openssl",
+    "spdlog",
+    "yaml-cpp"
+  ]
+}

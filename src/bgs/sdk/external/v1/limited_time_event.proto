@@ -1,0 +1,27 @@
+syntax = "proto2";
+
+package classic.protocol.external.v1.limited_time_event;
+
+import "bgs/low/pb/client/global_extensions/method_options.proto";
+import "bgs/low/pb/client/global_extensions/service_options.proto";
+import "external/v1/limited_time_event_common.proto";
+
+option cc_generic_services = false;
+option optimize_for = CODE_SIZE;
+
+// 0xFC8CBE70
+service LimitedTimeEventListener {
+	rpc SetLimitedTimeEventStatus(SetLimitedTimeEventStatusRequest) returns(SetLimitedTimeEventStatusResponse) { 
+		option (bgs.protocol.method_options).id = 262857139; // 0xFAAE1B3
+	}
+
+	option (bgs.protocol.service_options).descriptor_hash = 4237082224; // 0xFC8CBE70
+	option (bgs.protocol.service_options).type = SERVICE_TYPE_RPC_DIRECT;
+	option (bgs.protocol.sdk_service_options).inbound = true;
+}
+
+message SetLimitedTimeEventStatusRequest {
+  optional classic.protocol.common_client.v1.limited_time_event.LimitedTimeEventStatus status = 1;
+}
+
+message SetLimitedTimeEventStatusResponse {}

@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package bgs.protocol;
+
+option java_package = "bgs.protocol";
+option java_outer_classname = "ContentHandleProto";
+
+message ContentHandle {
+	required fixed32 region = 1;
+	required fixed32 usage = 2;
+	required bytes hash = 3;
+	optional string proto_url = 4;
+}
+message TitleIconContentHandle {
+	optional uint32 title_id = 1;
+	optional bgs.protocol.ContentHandle content_handle = 2;
+}
+

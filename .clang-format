@@ -1,0 +1,19 @@
+# Use the Google style in this project.
+BasedOnStyle: Google
+
+Language: Cpp
+IndentWidth: 2
+ColumnLimit: 120
+
+AllowShortFunctionsOnASingleLine: Empty
+DerivePointerAlignment: false
+PointerAlignment: Left
+#QualifierAlignment: Left
+IncludeBlocks: Regroup
+IncludeCategories:
+- Regex: '^\"'
+  Priority: 1500
+- Regex: '^<.*/.*'
+  Priority: 4000
+- Regex: '^<[^/]*>'
+  Priority: 5000

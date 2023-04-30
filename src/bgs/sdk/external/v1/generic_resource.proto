@@ -1,0 +1,56 @@
+syntax = "proto2";
+
+package classic.protocol.external.v1.generic_resource;
+
+import "bgs/low/pb/client/global_extensions/method_options.proto";
+import "bgs/low/pb/client/global_extensions/service_options.proto";
+
+option cc_generic_services = false;
+option optimize_for = CODE_SIZE;
+
+// 0x53F2FD69
+service GenericResourceListener {
+	rpc ReqGenericResource(GenericResourceRequest) returns(GenericResourceResponse) { 
+		option (bgs.protocol.method_options).id = 4133525012; // 0xF6609614
+	}
+
+	rpc SetAvailableResources(SetAvailableResourcesRequest) returns(SetAvailableResourcesResponse) { 
+		option (bgs.protocol.method_options).id = 1214605795; // 0x486569E3
+	}
+
+	option (bgs.protocol.service_options).descriptor_hash = 1408433513; // 0x53F2FD69
+	option (bgs.protocol.service_options).type = SERVICE_TYPE_RPC_DIRECT;
+	option (bgs.protocol.sdk_service_options).inbound = true;
+	option (bgs.protocol.sdk_service_options).outbound = true;
+}
+
+message LocaleData {
+  optional string locale = 1;
+  optional string key = 2;
+  optional string value = 3;
+}
+
+message SourceData {
+  optional string name = 1;
+  optional string unknown2 = 2;
+}
+
+message ResourceData {
+  optional string name = 1;
+  optional LocaleData locale_data = 2;
+}
+
+message GenericResourceRequest {
+  optional string locale = 1;
+  repeated SourceData data = 2;
+}
+
+message GenericResourceResponse {
+  repeated ResourceData data = 1;
+}
+
+message SetAvailableResourcesRequest {
+  repeated ResourceData data = 1;
+}
+
+message SetAvailableResourcesResponse {}

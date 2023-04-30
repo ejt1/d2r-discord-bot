@@ -1,0 +1,61 @@
+syntax = "proto2";
+
+package bgs.protocol.session.v1;
+
+import "bgs/low/pb/client/global_extensions/field_options.proto";
+import "bgs/low/pb/client/global_extensions/message_options.proto";
+import "bgs/low/pb/client/global_extensions/method_options.proto";
+import "bgs/low/pb/client/global_extensions/service_options.proto";
+import "bgs/low/pb/client/account_types.proto";
+
+enum SessionRestrictionType {
+	UNSPECIFIED = 0;
+	PARENTAL_CONTROL = 1;
+	GOVERNMENT_CONTROL = 2;
+	CAIS = 3;
+}
+
+message SessionOptions {
+	optional bool billing = 1 [default = true];
+	optional bool presence = 2 [default = true];
+}
+message SessionState {
+	optional bgs.protocol.account.v1.GameAccountHandle handle = 1;
+	optional string client_address = 2;
+	optional uint64 last_tick_time = 3;
+	optional uint64 create_time = 4;
+	optional bool parental_controls_active = 5;
+	optional bgs.protocol.account.v1.GameSessionLocation location = 6;
+	optional bool using_igr_address = 7;
+	optional bool has_benefactor = 8;
+	optional bgs.protocol.account.v1.IgrId igr_id = 9;
+	optional bool deductible = 10;
+	optional uint64 expire_time_ms = 11;
+	optional string mac_address = 12;
+}
+message SessionIdentifier {
+	optional bgs.protocol.account.v1.GameAccountHandle game_account = 1;
+	optional string session_id = 2;
+	optional uint64 account_id = 3;
+}
+message GameSessionInfo {
+	optional uint32 start_time = 3 [deprecated = true];
+	optional bgs.protocol.session.v1.GameSessionLocation location = 4;
+	optional bool has_benefactor = 5;
+	optional bool is_using_igr = 6;
+	optional bool parental_controls_active = 7;
+	optional uint64 start_time_sec = 8;
+	optional bgs.protocol.session.v1.IgrId igr_id = 9;
+	optional fixed32 platform_id = 10;
+}
+message GameSessionLocation {
+	optional string ip_address = 1;
+	optional uint32 country = 2;
+	optional string city = 3;
+}
+message IgrId {
+	optional bgs.protocol.account.v1.GameAccountHandle game_account = 1;
+	optional fixed32 external_id = 2;
+	optional string uuid = 3;
+}
+

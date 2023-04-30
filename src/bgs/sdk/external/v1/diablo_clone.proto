@@ -1,0 +1,41 @@
+syntax = "proto2";
+
+package classic.protocol.external.v1.diablo_clone;
+
+import "bgs/low/pb/client/global_extensions/method_options.proto";
+import "bgs/low/pb/client/global_extensions/service_options.proto";
+import "bgs/low/pb/client/rpc_types.proto";
+
+option cc_generic_services = false;
+option optimize_for = CODE_SIZE;
+
+// 0xC796E5D6
+service DiabloCloneExternalListener {
+	rpc DiabloCloneMessageTier(DiabloCloneMessageTierRequest) returns(.bgs.protocol.NoData) { 
+		option (bgs.protocol.method_options).id = 3536264121; // 0xD2C71BB9
+	}
+
+	option (bgs.protocol.service_options).descriptor_hash = 3348555222; // 0xC796E5D6
+	option (bgs.protocol.service_options).type = SERVICE_TYPE_RPC_DIRECT;
+	option (bgs.protocol.sdk_service_options).inbound = true;
+}
+
+enum GameType {
+  Classic = 0;
+  ClassicHardcore = 1;
+  ClassicLadder = 2;
+  ClassicLadderHardcore = 3;
+  ExpansionNonLadder = 4;
+  ExpansionNonLadderHardcore = 5;
+  ExpansionLadder = 6;
+  ExpansionLadderHardcore = 7;
+}
+
+message DiabloCloneTier {
+  optional GameType game_type = 1;
+  optional uint32 progression = 2;
+}
+
+message DiabloCloneMessageTierRequest {
+  repeated DiabloCloneTier tiers = 1;
+}

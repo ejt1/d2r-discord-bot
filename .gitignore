@@ -1,0 +1,12 @@
+# Directories
+/.vs
+/out
+/build
+
+# Files
+*.user
+
+## Ignore Visual Studio solution/project files
+# They are generated using /scripts/GenerateProjects.bat
+*.sln
+*.vcxproj*

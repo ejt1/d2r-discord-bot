@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package bgs.protocol.account.v2;
+
+import "bgs/low/pb/client/global_extensions/field_options.proto";
+import "bgs/low/pb/client/global_extensions/method_options.proto";
+import "bgs/low/pb/client/global_extensions/message_options.proto";
+import "bgs/low/pb/client/global_extensions/service_options.proto";
+import "bgs/low/pb/client/api/client/v2/game_account_handle.proto";
+
+message Identity {
+	optional uint64 account = 1 ;
+	optional bgs.protocol.account.v2.GameAccountHandle game_account = 2 ;
+	option (message_options).custom_validator = true;
+}
+

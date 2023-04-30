@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package bgs.protocol.account.v2;
+
+import "google/protobuf/descriptor.proto";
+import "bgs/low/pb/client/global_extensions/range.proto";
+import "bgs/low/pb/client/global_extensions/field_options.proto";
+import "bgs/low/pb/client/global_extensions/routing.proto";
+import "bgs/low/pb/client/global_extensions/method_options.proto";
+import "bgs/low/pb/client/global_extensions/message_options.proto";
+import "bgs/low/pb/client/global_extensions/service_options.proto";
+import "bgs/low/pb/client/rpc_types.proto";
+
+message GameAccountHandle {
+	optional uint64 id = 1 ;
+	optional uint32 title_id = 2 ;
+	optional uint32 region = 3 ;
+	option (message_options).custom_select_shard = true;
+}
+

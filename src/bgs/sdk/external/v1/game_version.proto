@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+package classic.protocol.external.v1.game_version;
+
+import "bgs/low/pb/client/global_extensions/method_options.proto";
+import "bgs/low/pb/client/global_extensions/service_options.proto";
+import "bgs/low/pb/client/rpc_types.proto";
+
+option cc_generic_services = false;
+option optimize_for = CODE_SIZE;
+
+// 0x3D930F0E
+service GameVersionService {
+	rpc SetGameVersion(SetGameVersionRequest) returns(.bgs.protocol.NoData) { 
+		option (bgs.protocol.method_options).id = 3566068832; // 0xD48DE460
+	}
+
+	rpc GameUpdateRequired(GameUpdateRequest) returns(.bgs.protocol.NoData) { 
+		option (bgs.protocol.method_options).id = 28424370; // 0x1B1B8B2
+	}
+
+	rpc GameUpdateCanceled(.bgs.protocol.NoData) returns(.bgs.protocol.NoData) { 
+		option (bgs.protocol.method_options).id = 2853831376; // 0xAA1A02D0
+	}
+
+	option (bgs.protocol.service_options).descriptor_hash = 1033047822; // 0x3D930F0E
+	option (bgs.protocol.service_options).type = SERVICE_TYPE_RPC_DIRECT;
+	option (bgs.protocol.sdk_service_options).outbound = true;
+}
+
+message GameUpdateRequest {
+}
+
+message SetGameVersionRequest{
+  optional string version = 1;
+}

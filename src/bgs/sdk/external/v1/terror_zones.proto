@@ -1,0 +1,31 @@
+syntax = "proto2";
+
+package classic.protocol.external.v1.terror_zones;
+
+import "bgs/low/pb/client/global_extensions/method_options.proto";
+import "bgs/low/pb/client/global_extensions/service_options.proto";
+import "bgs/low/pb/client/rpc_types.proto";
+
+option cc_generic_services = false;
+option optimize_for = CODE_SIZE;
+
+// 0xF6E3A91
+service TerrorZonesListener {
+	rpc TerrorZonesMessage(TerrorZonesMessageRequest) returns(.bgs.protocol.NoData) { 
+		option (bgs.protocol.method_options).id = 1316421249; // 0x4E76FE81
+	}
+
+	option (bgs.protocol.service_options).descriptor_hash = 258882193; // 0xF6E3A91
+	option (bgs.protocol.service_options).type = SERVICE_TYPE_RPC_DIRECT;
+	option (bgs.protocol.sdk_service_options).inbound = true;
+}
+
+message TerrorZonesMessageRequest {
+    optional uint32 minutes_remaining = 1;
+    repeated uint32 current = 2; // current terrorized
+    repeated uint32 next = 3; // next terrorized
+    optional uint32 zero = 4; // 0
+    optional uint32 phase = 5; // phase? 0 to 3
+    optional uint32 one1 = 6; // 1
+    optional uint32 one2 = 7; // 1
+}

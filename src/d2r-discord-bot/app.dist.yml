@@ -1,0 +1,12 @@
+version: 3
+discord:
+  clientid:
+  token: ""
+# Regions
+# 0 = Europe
+# 1 = United States
+# 2 = Korea
+clients:
+  - name: NAME_HERE
+    region: 0
+    web_credentials: EU-YOURTOKENHERE-1234567890
