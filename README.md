@@ -51,7 +51,7 @@ git clone https://github.com/ejt1/d2r-discord-bot
 cd d2r-discord-bot
 mkdir build
 cd build
-cmake .. --install-prefix=~/d2r-discord-bot-bin
+cmake .. --install-prefix=/home/<USERNAME>/d2r-discord-bot-bin
 make -j8
 make install
 ```
