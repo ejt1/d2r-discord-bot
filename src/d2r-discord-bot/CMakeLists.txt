@@ -1,4 +1,6 @@
 find_package(dpp CONFIG REQUIRED)
+find_package(Opus CONFIG REQUIRED)
+find_package(unofficial-sodium CONFIG REQUIRED)
 find_package(yaml-cpp CONFIG REQUIRED)
 
 set(D2RDB_SRCS
@@ -58,6 +60,8 @@ install(FILES
 install(
   IMPORTED_RUNTIME_ARTIFACTS
     dpp::dpp
+    Opus::opus
+    unofficial-sodium::sodium
     yaml-cpp
   DESTINATION
     ${CMAKE_INSTALL_PREFIX})
