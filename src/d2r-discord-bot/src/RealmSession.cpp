@@ -34,7 +34,7 @@ asio::awaitable<void> RealmSession::AuthSession(const std::string& web_credentia
   d2r_connection_v1::AuthSessionRequest request;
   request.set_session_key(token);
   request.set_program('OSI');
-  request.set_version("1.5.73090");
+  request.set_version("1.6.74264");
   request.set_session_token("JMgPfro+DyPnrg+ze9qOmrX/8iU=");
   request.set_unknown6(0x30100);
   request.set_platform('Wn64');
@@ -60,7 +60,7 @@ asio::awaitable<void> RealmSession::AuthSession(const std::string& web_credentia
 
 asio::awaitable<void> RealmSession::SetVersion(const std::string& version) {
   game_version_v1::SetGameVersionRequest request;
-  request.set_version("1.5.73090");
+  request.set_version("1.6.74264");
 
   game_version_v1::GameVersionService_Stub stub(shared_from_this());
   co_await stub.SetGameVersion(request);
